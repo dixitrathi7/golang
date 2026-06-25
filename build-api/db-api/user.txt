@@ -1,0 +1,103 @@
+/*
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
+)
+
+var db *gorm.DB // main GORM object that represents your database connection and provides methods like: Create, Find, Update, Delete, etc.
+var err error
+
+type User struct {
+	gorm.Model        //
+	Name       string `json:"name"`
+	Email      string `json:"email"`
+}
+
+func initDB() {  // init is the spicial function in golang, it will be called before main function, so we can use it to init the database connection
+init only run once, so we can use it to init the database connection
+	var err error
+	db, err = gorm.Open("sqlite3", "test.db") // db is the main GORM object that represents your database connection and provides methods like: Create, Find, Update, Delete, etc.
+	if err != nil {
+		panic("failed to connect database")
+	}
+	defer db.Close() // Close the database connection when the function returns
+	db.AutoMigrate(&User{})
+}
+
+func userlist(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Welcome to the UserList!")
+	db, err := gorm.Open("sqlite3", "test.db")
+	if err != nil {
+		panic("failed to connect database")
+	}
+	defer db.Close() // Close the database connection when the function returns
+	var users []User
+	db.Find(&users)
+	json.NewEncoder(w).Encode(users)
+
+	fmt.Fprintf(w, "User list retrieved")
+
+	fmt.Println("Endpoint Hit: userlist")
+}
+
+func createUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Welcome to the CreateUser!")
+
+	db, err := gorm.Open("sqlite3", "test.db")
+	if err != nil {
+		panic("failed to connect database")
+	}
+	defer db.Close()
+	vars := mux.Vars(r)
+	name := vars["name"]
+	email := vars["email"]
+	db.Create(&User{Name: name, Email: email})
+
+	fmt.Fprintf(w, "User %s created", name)
+
+	fmt.Println("Endpoint Hit: createUser")
+}
+
+func deleteUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Welcome to the DeleteUser!")
+	db, err := gorm.Open("sqlite3", "test.db")
+	if err != nil {
+		panic("failed to connect database")
+	}
+	defer db.Close()
+	vars := mux.Vars(r)
+
+	var user User
+	db.Where("name = ?", vars["name"]).First(&user)
+	db.Delete(&user)
+
+	fmt.Fprintf(w, "User %s deleted", vars["name"])
+
+	fmt.Println("Endpoint Hit: deleteUser")
+}
+
+func updateUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Welcome to the UpdateUser!")
+
+	db, err := gorm.Open("sqlite3", "test.db")
+	if err != nil {
+		panic("failed to connect database")
+	}
+	defer db.Close()
+	vars := mux.Vars(r)
+	var user User
+	db.Where("name = ?", vars["name"]).First(&user)
+	db.Delete(&user)
+
+	fmt.Fprintf(w, "User %s updated", vars["name"])
+
+	fmt.Println("Endpoint Hit: updateUser")
+}
+*/
